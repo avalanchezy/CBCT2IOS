@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+# data and outputs stay out of the repository
+*.nii
+*.nii.gz
+*.ply
+*.stl
+*.npz
+out/
+outputs/
+audit/
