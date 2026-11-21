@@ -38,12 +38,12 @@ MIN_EXPOSED = 4.5          # crown top above the median bone crest (mm); below: 
 MIN_VISIBLE_AREA = 15.     # mm^2 of simulated IOS crown
 MAX_AXIS_ANGLE = 45.       # degrees between tooth and jaw axis
 MIN_PIECE_FACES = 10       # visible patches with fewer faces are not part of the scan
-CAUSE_COLORS = np.array([[64, 160, 96, 255],     # visible: the simulated IOS crown
-                         [214, 190, 140, 255],   # in bone
-                         [222, 120, 132, 255],   # under the gingiva
-                         [88, 120, 204, 255],    # proximal (contact with a neighbour, or hidden behind it)
-                         [150, 150, 150, 255]],  # other hidden supragingival faces
-                        np.uint8)
+CAUSE_HEX = ('#2A78D6',   # visible: the simulated IOS crown
+             '#B98B4E',   # in bone
+             '#E87BA4',   # under the gingiva
+             '#EDA100',   # proximal (contact with a neighbour, or hidden behind it)
+             '#6250D6')   # other hidden supragingival faces
+CAUSE_COLORS = np.array([[int(h[i:i + 2], 16) for i in (1, 3, 5)] + [255] for h in CAUSE_HEX], np.uint8)
 PROSTHETIC_NAMES = {BRIDGE: 'bridge', CROWN: 'crown'}
 
 

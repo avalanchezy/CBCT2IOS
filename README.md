@@ -11,6 +11,27 @@ without real paired scans.
 
 Only the label volumes are read. The CBCT intensities are not needed.
 
+![Simulation on ToothFairy3 case F_009, lower jaw](docs/overview.png)
+
+*ToothFairy3 case F_009, lower jaw, default recipe. Left: CBCT section through tooth 46, with the tooth surface
+coloured by occlusion cause and the simulated gingiva (dashed). Middle: the simulated scan, gingiva and visible crowns,
+tooth 46 in blue. Right: the whole tooth 46. The blue part is what the scan contains; the rest is the hidden surface,
+coloured by why the scanner cannot see it.*
+
+![Occlusion cause of every tooth face](docs/causes.png)
+
+*The same jaw with every tooth coloured by occlusion cause: the whole jaw from the buccal side, and teeth 41–48 from
+the lingual side. Proximal faces (amber) sit where neighbouring teeth touch;
+the gingiva covers the 3 mm above the bone crest, more between the teeth.*
+
+![Label surface against the default recipe](docs/densify.png)
+
+*Densification on tooth 46. Left pair: the tooth surface straight from the 0.3 mm labels, then smoothed and subdivided.
+Right pair: the scanned crown cut from each, with its mesh edges; the default recipe resamples it to the vertex density
+of a real intraoral scan.*
+
+The figures are made by `scripts/make_figures.py` from the output of `simulate` (see the script for the commands).
+
 ## Pipeline
 
 ```mermaid
@@ -86,7 +107,7 @@ real visible fractions. `cbct2ios/calibrate.py` repeats that comparison with you
 
 ## Installation
 
-Python ≥ 3.9.
+Python ≥ 3.9. `matplotlib` is needed only for `scripts/make_figures.py`.
 
 ```bash
 pip install -r requirements.txt
@@ -164,11 +185,11 @@ out/
 
 | Code | Cause | Colour |
 |---|---|---|
-| 0 | visible (scanned crown) | green |
-| 1 | in bone | beige |
-| 2 | under the gingiva | pink |
-| 3 | proximal (contact with a neighbour, or hidden behind it) | blue |
-| 4 | other hidden supragingival face | grey |
+| 0 | visible (scanned crown) | blue `#2A78D6` |
+| 1 | in bone | brown `#B98B4E` |
+| 2 | under the gingiva | pink `#E87BA4` |
+| 3 | proximal (contact with a neighbour, or hidden behind it) | amber `#EDA100` |
+| 4 | other hidden supragingival face | violet `#6250D6` |
 
 ## Numbers on ToothFairy3
 
@@ -199,3 +220,4 @@ These are from a run of this pipeline on all 532 label volumes with the default 
 | `cbct2ios/geometry.py` | sampling, constrained smoothing, Loop subdivision, IOS-density resampling |
 | `cbct2ios/pipeline.py` | command line, densification, export, target selection |
 | `cbct2ios/calibrate.py` | choice of `h_f` against real visible fractions |
+| `scripts/make_figures.py` | the figures of this README (needs matplotlib) |
